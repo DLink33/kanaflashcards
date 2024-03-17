@@ -2,32 +2,19 @@
 
 from flashCards import FlashCardDeck
 from utils import createMenu as menu
-from games import printCards
+from games import printCards, guessCards
 import time
 
 KANA_CSV = "kana.csv"
+KANA_TEST_CSV = "kana-test.csv"
 JAP_VOCAB_CSV = "jap-vocab.csv"
 
 
-def func1():
-    print("This is function 1")
-    time.sleep(2)
-
-
-def func2():
-    print("This is function 2")
-    time.sleep(2)
-
-
-def func3():
-    print("This is function 3")
-    time.sleep(2)
-
-
 def main():
-    flashCardDeck = FlashCardDeck(KANA_CSV)
+    # kanaCardDeck = FlashCardDeck(KANA_CSV)
+    kanaCardDeck = FlashCardDeck(KANA_CSV)
     vocabCardDeck = FlashCardDeck(JAP_VOCAB_CSV)
-    kanaCards = flashCardDeck.cards
+    kanaCards = kanaCardDeck.cards
     vocabCards = vocabCardDeck.cards
     kanaCards[0].printCard('hiragana')
     kanaCards[0].printCard('romaji')
@@ -37,9 +24,11 @@ def main():
     vocabCards[0].printCard('japanese')
 
     functions = {
-        "Print Cards": {"function": printCards, "args": [flashCardDeck]},
-        "Func2": {"function": func2, "args": []},
-        "Func3": {"function": func3, "args": []}
+        "Hiragana to Romaji": {"function": guessCards, "args": [kanaCardDeck, "hiragana", "romaji"]},
+        "Katakana to Romaji": {"function": guessCards, "args": [kanaCardDeck, "katakana", "romaji"]},
+        "Katakana to Hiragana": {"function": guessCards, "args": [kanaCardDeck, "katakana", "hiragana"]},
+        "Japanese Vocabulary": {"function": guessCards, "args": [vocabCardDeck, "japanese", "english"]},
+        "Japanese Pronunciation": {"function": guessCards, "args": [vocabCardDeck, "japanese", "pronunciation"]}
     }
 
     menu("English ⇆ Japanese", "FlashCards for learning Japanese...", functions)
