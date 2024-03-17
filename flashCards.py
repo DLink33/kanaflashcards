@@ -33,11 +33,6 @@ class FlashCard:
         print(bottom_border)
 
 
-class KanaFlashCard(FlashCard):
-    def __init__(self, romaji, hiragana, katakana, index):
-        super().__init__(index, r=romaji, h=hiragana, k=katakana)
-
-
 class FlashCardDeck:
     def __init__(self, csvFile):
         self.cards = []

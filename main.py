@@ -1,14 +1,8 @@
-#!env/Scripts/python
-
-'''
-To run from inside the virtual environment:
-    $ source env/Scripts/activate
-To deactivate the virtual environment:
-    $ deactivate
-'''
+#!/mingw64/bin/python3
 
 from flashCards import FlashCardDeck
-from menu import createMenu as menu
+from utils import createMenu as menu
+from games import printCards
 import time
 
 KANA_CSV = "kana.csv"
@@ -42,7 +36,11 @@ def main():
     vocabCards[0].printCard('english')
     vocabCards[0].printCard('japanese')
 
-    functions = {"Func1": func1, "Func2": func2, "Func3": func3}
+    functions = {
+        "Print Cards": {"function": printCards, "args": [flashCardDeck]},
+        "Func2": {"function": func2, "args": []},
+        "Func3": {"function": func3, "args": []}
+    }
 
     menu("English ⇆ Japanese", "FlashCards for learning Japanese...", functions)
 
