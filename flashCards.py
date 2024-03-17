@@ -1,43 +1,41 @@
 import csv
 import random
-from unicodedata import east_asian_width as eWidth
+from utils import calcStrWidth
+
 
 class FlashCard:
-    def __init__(self, sides):
+    def __init__(self, index, **sides):
         self.sides = sides
+        self.index = index
 
     def __str__(self):
         string = ""
         for value in self.sides.values():
-            string+=','+str(value)
+            string += ','+str(value)
         return string[1:]
 
     def check(self, guess, side):
-        return guess == side.value()
+        return guess == self.sides[side]
 
-class KanaFlashCard(FlashCard):
-    def __init__(self, romaji, hiragana, katakana):
-        super().__init__({'romaji':romaji, 'hiragana':hiragana, 'katakana':katakana})
-
-    def printCard(self, kanaType):
-        value = self.sides.get(kanaType, "")
-        length = len(value)
+    def printCard(self, side):
+        value = self.sides[side]
+        width = calcStrWidth(value)
         padding = 2
-        if length == 1:
-            width = 2 if eWidth(value) in ('F', 'W') else 1
-            middle_line = "│" + " " * padding + value + " " * (padding-1) + "│"
-        else:
-            width = length
-            middle_line = "│" + " " * padding + value + " " * padding + "│"
         top_border = "┌" + "─" * (width + 2*padding) + "┐"
-        mid1 = "│"+ " " * (width + 2*padding) + "│"
-        mid2 = "│"+ " " * (width + 2*padding) + "│"
+        mid1 = "│" + " " * (width + 2*padding) + "│"
+        middle_line = "│" + " " * padding + value + " " * padding + "│"
+        mid2 = "│" + " " * (width + 2*padding) + "│"
         bottom_border = "└" + "─" * (width + 2*padding) + "┘"
         print(top_border)
         print(mid1)
         print(middle_line)
         print(mid2)
         print(bottom_border)
+
+
+class KanaFlashCard(FlashCard):
+    def __init__(self, romaji, hiragana, katakana, index):
+        super().__init__(index, r=romaji, h=hiragana, k=katakana)
 
 
 class FlashCardDeck:
@@ -47,21 +45,21 @@ class FlashCardDeck:
 
     def __str__(self):
         return f"{self.cards}"
+
     def __len__(self):
         return len(self.cards)
+
     def __getitem__(self, index):
         return self.cards[index]
-    def generateCards(self, csvFile):
-        with open(csvFile, 'r', encoding='UTF-8') as file:
+
+    def generateCards(self, csvFile, encoding='UTF-8'):
+        with open(csvFile, 'r', encoding=encoding) as file:
             reader = csv.reader(file)
-            numColumns = len(next(reader))
-            if numColumns == 2:
-                for row in reader:
-                    self.cards.append(FlashCard(row[0], row[1]))
-            elif numColumns == 3:
-                for row in reader:
-                    self.cards.append(KanaFlashCard(row[0], row[1], row[2]))
-            else:
-                print("Invalid number of columns in csv file")
+            headers = next(reader)
+            for i, row in enumerate(reader):
+                sides = {header.lower(): value for header,
+                         value in zip(headers, row)}
+                self.cards.append(FlashCard(i, **sides))
+
     def shuffle(self):
         random.shuffle(self.cards)
