@@ -1,8 +1,88 @@
-English,Japanese,pronunciation
-Japan,日本,nihon
-America,アメリカ,amerika
-this,これ,kore
-that,それ,sore
-here,ここ,koko
-there,そこ,soko
-where,どこ,doko
+English,Japanese,pronunciation,kanji-alternative,category
+yes,はい,hai,n/a,n/a
+no,いいえ,iie,n/a,n/a
+it is,です,desu,n/a,n/a
+this,これ,kore,n/a,n/a
+that,それ,sore,n/a,n/a
+here,ここ,koko,n/a,n/a
+there,そこ,soko,n/a,n/a
+where,どこ,doko,n/a,n/a
+excuse me,すみません,sumimasen,n/a,salutation
+please,ください,kudasai,n/a,salutation
+please (formal),おねがいします,onegaishimasu,n/a,salutation
+thank you,ありがとう,arigatou,n/a,salutation
+thank you (formal),ありがとうございます,arigatou gozaimasu,n/a,salutation
+you're welcome,どういたしまして,douitashimashite,n/a,salutation
+nice to meet you,はじめまして,hajimemashite,n/a,salutation
+nice to meet you,どうぞよろしく,douzoyoroshiku,n/a,salutation
+hello,こんにちは,konnichiwa,n/a,salutation
+goodbye,さようなら,sayounara,n/a,salutation
+good afternoon,こんにちは,konnichiwa,n/a,salutation
+good morning,おはようございます,ohayou gozaimasu,n/a,salutation
+good evening,こんばんは,konbanwa,n/a,salutation
+good night,おやすみなさい,oyasuminasai,n/a,salutation
+rice,ごはん,gohan,ご飯,food
+noodles,めん,men,麺,food
+ramen,ラーメン,raamen,n/a,food
+sushi,すし,sushi,寿司,food
+bread,パン,pan,n/a,food
+egg,たまご,tamago,卵,food
+pizza,ピザ,piza,n/a,food
+cake,ケーキ,keeki,n/a,food
+hamburger,ハンバーガー,hanbaagaa,n/a,food
+curry,カレー,karee,n/a,food
+Mr.,さん,san,n/a,n/a
+person,ひと,hito,人,n/a
+cool,かっこいい,kakkoii,格好いい,adjective
+kind,やさしい,yasashii,n/a,adjective
+cute,かわいい,kawaii,可愛い,adjective
+small,ちいさい,chiisai,小さい,adjective
+big,おおきい,ookii,大きい,adjective
+delicious,おいしい,oishii,美味しい,food
+student,がくせい,gakusei,学生,profession
+doctor,いしゃ,isha,医者,profession
+lawyer,べんごし,bengoshi,弁護士,profession
+teacher,せんせい,sensei,先生,profession
+engineer,エンジニア,enjinia,n/a,profession
+and,と,to,n/a
+water,みず,mizu,水,drink
+green tea,おちゃ,ocha,お茶,drink
+coffee,コーヒー,koohii,n/a,drink
+beer,ビール,biiru,n/a,drink
+sake,さけ,sake,酒,drink
+wine,ワイン,wain,,drink
+is regarding,は,wa,n/a
+university,だいがく,daigaku,大学,location
+staion,えき,eki,駅,location
+department store,デパート,depaato,n/a,location
+bus stop,バスてい,basutei,n/a,location
+hotel,ホテル,hoteru,n/a,location
+convience store,コンビニ,konbini,n/a,location
+Japan,にほん,nihon,日本,country
+Japanese,にほんじん,nihonjin,日本人,country
+America,アメリカ,amerika,n/a,country
+American,アメリカじん,amerikajin,n/a,country
+Brazil,ブラジル,burajiru,n/a,country
+Brazilian,ブラジルじん,burajirujin,n/a,country
+Britain,イギリス,igirisu,n/,country
+British,イギリスじん,igirisujin,n/a,country
+Canada,カナダ,kanada,n/a,country
+Canadian,カナダじん,kanadajin,n/a,country
+one,いち,ichi,一,number
+two,に,ni,二,number
+three,さん,san,三,number
+four,よん,yon,四,number
+five,ご,go,五,number
+six,ろく,roku,六,number
+seven,しち,shichi,七,number
+eight,はち,hachi,八,number
+nine,きゅう,kyuu,九,number
+ten,じゅう,juu,十,number
+red,あかい,akai,赤い,color
+orange,オレンジ,orenji,n/a,color
+yellow,きいろい,kiiroi,黄色い,color
+green,みどり,midori,緑,color
+blue,あおい,aoi,青い,color
+purple,むらさき,murasaki,紫,color
+white,しろい,shiroi,白い,color
+black,くろい,kuroi,黒い,color

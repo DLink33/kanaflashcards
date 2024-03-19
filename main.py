@@ -14,15 +14,6 @@ def main():
     # kanaCardDeck = FlashCardDeck(KANA_CSV)
     kanaCardDeck = FlashCardDeck(KANA_CSV)
     vocabCardDeck = FlashCardDeck(JAP_VOCAB_CSV)
-    kanaCards = kanaCardDeck.cards
-    vocabCards = vocabCardDeck.cards
-    kanaCards[0].printCard('hiragana')
-    kanaCards[0].printCard('romaji')
-    kanaCards[0].printCard('katakana')
-    print()
-    vocabCards[0].printCard('english')
-    vocabCards[0].printCard('japanese')
-
     functions = {
         "Hiragana to Romaji": {"function": guessCards, "args": [kanaCardDeck, "hiragana", "romaji"]},
         "Katakana to Romaji": {"function": guessCards, "args": [kanaCardDeck, "katakana", "romaji"]},

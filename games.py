@@ -7,32 +7,47 @@ def guessCard(card, sideKey, ansKey):
     os.system('cls' if os.name == 'nt' else 'clear')
     card.printCard(sideKey)
     userIn = input(f"Enter the {ansKey} for this card: ")
+    if userIn.lower() == 'exit':
+        return 'exit'
     if not card.check(userIn, ansKey):
         print("Incorrect. Nice try!")
-        input("Press Enter to continue")
+        userIn = input("1. Show answer\n2. Continue...\n")
+        while userIn != '1' and userIn != '2' and userIn.lower() != 'exit':
+            userIn = input()
+        if userIn.lower() == 'exit':
+            return 'exit'
+        if userIn == '1':
+            os.system('cls')
+            card.printCard(ansKey)
+            input("Press Enter to continue\n")
         return False
     else:
         print("Correct!")
         input("Press Enter to continue")
         return True
 
-
 def handleMissedCards(missedCards, sideKey, ansKey):
     while len(missedCards) > 0:
         userIn = input(
-            "Would you like to practice the card you missed? (Y/N): ").lower()
-        while userIn not in ["y", "n"]:
-            userIn = input("Invalid input. Please enter Yes or No:").lower()
+            "Would you like to practice the cards you missed? (Y/N):\n").lower()
+        while userIn not in ["y", "n"] and userIn != 'exit':
+            userIn = input("Invalid input. Please enter Yes or No:\n").lower()
+        if userIn == 'exit':
+            return 'exit'
         if userIn == "y":
             for i in range(len(missedCards)):
                 card = missedCards.pop()
-                if not guessCard(card, sideKey, ansKey):
+                result = guessCard(card, sideKey, ansKey)
+                if result == 'exit':
+                    return 'exit'
+                if not result:
                     missedCards.insert(0, card)
         else:
             break
 
-
 def guessCards(flashCardDeck, sideKey, ansKey):
+    totalPoints = 0
+    points = 0
     deck = flashCardDeck
     deck.shuffle()
     missedCards = []
@@ -42,14 +57,27 @@ def guessCards(flashCardDeck, sideKey, ansKey):
         print("ERROR: Invalid side-type.")
         return
     for card in deck.cards:
-        if not guessCard(card, sideKey, ansKey):
+        totalPoints += 1
+        result = guessCard(card, sideKey, ansKey)
+        if result == 'exit':
+            totalPoints -= 1
+            score = f"Score: {points}/{totalPoints} or {points/totalPoints*100:.2f}%\n"
+            print(score)
+            input("Press Enter to return to menu\n")
+            return
+        if not result:
             missedCards.append(card)
-    print("All cards reviewed.")
+        else:
+            points += 1
+    print("All cards reviewed.\n")
+    score = f"Score: {points}/{totalPoints} or {points/totalPoints*100:.2f}%\n"
+    print(score)
     if len(missedCards) == 0:
-        input("Press Enter to return to menu")
+        input("Press Enter to return to menu\n")
         return
-    handleMissedCards(missedCards, sideKey, ansKey)
-    input("Missed cards reviewed! Press Enter to return to menu")
+    if handleMissedCards(missedCards, sideKey, ansKey) == 'exit':
+        return
+    input("Missed cards reviewed! Press Enter to return to menu\n")
 
 
 def printCards(flashCardDeck):
