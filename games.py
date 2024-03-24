@@ -25,6 +25,7 @@ def guessCard(card, sideKey, ansKey):
         input("Press Enter to continue")
         return True
 
+
 def handleMissedCards(missedCards, sideKey, ansKey):
     while len(missedCards) > 0:
         userIn = input(
@@ -43,6 +44,7 @@ def handleMissedCards(missedCards, sideKey, ansKey):
                     missedCards.insert(0, card)
         else:
             break
+
 
 def guessCards(flashCardDeck, sideKey, ansKey):
     totalPoints = 0
@@ -81,17 +83,28 @@ def guessCards(flashCardDeck, sideKey, ansKey):
         return
     input("Missed cards reviewed! Press Enter to return to menu\n")
 
-def customGuessCards(flashCardDeck, sideKey, ansKey):
-    cardType = input("Enter the category of cards you would like to review: ")
+
+def customGuessCards(flashCardDeck, allTags, sideKey, ansKey):
+    print("Enter the tags of cards you would like to review (space separated):")
+    print("Available Tags:\n")
+    counter = 0
+    for tag in allTags:
+        print("\t• {:<15}".format(tag), end=' ')
+        counter += 1
+        if counter % 3 == 0:
+            print()
+    userIn = input()
+    userTags = [tag.strip() for tag in userIn.split(",")]
     totalPoints = 0
     points = 0
     deck = flashCardDeck
     deck.shuffle()
     customDeck = []
     for card in deck.cards:
-        if cardType == card.sides['category']:
-            print(card.sides['category'])
-            customDeck.append(card)
+        tags = card.sides['tags'][1:-1].split(" ")
+        for tag in tags:
+            if tag in userTags:
+                customDeck.append(card)
     if customDeck == []:
         print("No cards found in that category.")
         input("Press Enter to return to menu\n")
@@ -123,6 +136,7 @@ def customGuessCards(flashCardDeck, sideKey, ansKey):
     if handleMissedCards(missedCards, sideKey, ansKey) == 'exit':
         return
     input("Missed cards reviewed! Press Enter to return to menu\n")
+
 
 def printCards(flashCardDeck):
     cards = flashCardDeck.cards

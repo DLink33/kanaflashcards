@@ -14,28 +14,32 @@ def main():
     # kanaCardDeck = FlashCardDeck(KANA_CSV)
     kanaCardDeck = FlashCardDeck(KANA_CSV)
     vocabCardDeck = FlashCardDeck(JAP_VOCAB_CSV)
-    
+    tags = []
+    for card in vocabCardDeck.cards:
+        for tag in card.sides['tags'][1:-1].split(" "):
+            if tag not in tags:
+                tags.append(tag)
+    tags.sort()
     kanaMenuFunctions = {
         "Hiragana to Romaji": {"function": guessCards, "args": [kanaCardDeck, "hiragana", "romaji"]},
         "Katakana to Romaji": {"function": guessCards, "args": [kanaCardDeck, "katakana", "romaji"]},
         "Katakana to Hiragana": {"function": guessCards, "args": [kanaCardDeck, "katakana", "hiragana"]},
         "Hiragana to Katakana": {"function": guessCards, "args": [kanaCardDeck, "hiragana", "katakana"]},
     }
-    
+
     vocabOptions = {
-        "all":{"function": guessCards,"args":[vocabCardDeck, "japanese","english"]},
-        "by category":{"function": customGuessCards,"args":[vocabCardDeck, "japanese","english"]},
+        "all": {"function": guessCards, "args": [vocabCardDeck, "japanese", "english"]},
+        "by category": {"function": customGuessCards, "args": [vocabCardDeck, tags, "japanese", "english"]},
     }
-    
+
     vocabFunctions = {
-        "Vocab":{"function":menu ,"args":["Vocab", "", vocabOptions]},
-        "Japanese Vocabulary": {"function": guessCards, "args": [vocabCardDeck, "japanese", "english"]},
-        "Japanese Pronunciation": {"function": guessCards, "args": [vocabCardDeck, "japanese", "pronunciation"]}
+        "Vocabulary": {"function": menu, "args": ["Vocab", "", vocabOptions]},
+        "Pronunciation": {"function": guessCards, "args": [vocabCardDeck, "japanese", "pronunciation"]}
     }
-    
+
     mainMenuFunctions = {
-        "Kana":{"function":menu, "args":["Kana Flashcards",  "Hiragana & Katakana", kanaMenuFunctions]},
-        "Vocabulary":{"function":menu,"args":["Vocabulary Flashcards", "Japanese Words", vocabFunctions]}
+        "Kana": {"function": menu, "args": ["Kana Flashcards",  "Hiragana & Katakana", kanaMenuFunctions]},
+        "Vocabulary": {"function": menu, "args": ["Vocabulary Flashcards", "Japanese Words", vocabFunctions]}
     }
 
     menu("English ⇆ Japanese", "FlashCards for learning Japanese...", mainMenuFunctions)
