@@ -1,4 +1,3 @@
-import flashCards
 import msvcrt
 import os
 
@@ -61,7 +60,10 @@ def guessCards(flashCardDeck, sideKey, ansKey):
         result = guessCard(card, sideKey, ansKey)
         if result == 'exit':
             totalPoints -= 1
-            score = f"Score: {points}/{totalPoints} or {points/totalPoints*100:.2f}%\n"
+            if totalPoints != 0:
+                score = f"Score: {points}/{totalPoints} or {points/totalPoints*100:.2f}%\n"
+            else:
+                score = "Score: 0/0 or 0.00%\n"
             print(score)
             input("Press Enter to return to menu\n")
             return
@@ -79,6 +81,48 @@ def guessCards(flashCardDeck, sideKey, ansKey):
         return
     input("Missed cards reviewed! Press Enter to return to menu\n")
 
+def customGuessCards(flashCardDeck, sideKey, ansKey):
+    cardType = input("Enter the category of cards you would like to review: ")
+    totalPoints = 0
+    points = 0
+    deck = flashCardDeck
+    deck.shuffle()
+    customDeck = []
+    for card in deck.cards:
+        if cardType == card.sides['category']:
+            print(card.sides['category'])
+            customDeck.append(card)
+    if customDeck == []:
+        print("No cards found in that category.")
+        input("Press Enter to return to menu\n")
+        return
+    missedCards = []
+    input("Press Enter to continue")
+    for card in customDeck:
+        totalPoints += 1
+        result = guessCard(card, sideKey, ansKey)
+        if result == 'exit':
+            totalPoints -= 1
+            if totalPoints != 0:
+                score = f"Score: {points}/{totalPoints} or {points/totalPoints*100:.2f}%\n"
+            else:
+                score = "Score: 0/0 or 0.00%\n"
+            print(score)
+            input("Press Enter to return to menu\n")
+            return
+        if not result:
+            missedCards.append(card)
+        else:
+            points += 1
+    print("All cards reviewed.\n")
+    score = f"Score: {points}/{totalPoints} or {points/totalPoints*100:.2f}%\n"
+    print(score)
+    if len(missedCards) == 0:
+        input("Press Enter to return to menu\n")
+        return
+    if handleMissedCards(missedCards, sideKey, ansKey) == 'exit':
+        return
+    input("Missed cards reviewed! Press Enter to return to menu\n")
 
 def printCards(flashCardDeck):
     cards = flashCardDeck.cards
