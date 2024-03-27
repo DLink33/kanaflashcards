@@ -19,7 +19,7 @@ def kanaPracticeMenu(kanaCardDeck, kanas):
     "Custom": {"function": customGuessCards, "args":[kanaCardDeck, kanas, key[shownKana], key[guessKana]]},
     }
     
-    menu(f"{key[shownKana].capitalize()} ⇆ {key[guessKana].capitalize()}", "", kanaMenuFunctions)
+    menu(f"{key[shownKana].capitalize()} ⟶ {key[guessKana].capitalize()}", "", kanaMenuFunctions)
 
     
 def main():
