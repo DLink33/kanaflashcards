@@ -17,6 +17,11 @@ def createMenu(title, subtitle, functions):
     # Show the menu
     menu.show()
 
+def getUserInput(prompt, validInputs):
+    userIn = input(prompt).lower()
+    while userIn not in validInputs:
+        userIn = input("Invalid input. Please enter a valid input:\n").lower()
+    return userIn
 
 def calcStrWidth(string):
     width = 0
