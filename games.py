@@ -1,5 +1,6 @@
 import msvcrt
 import os
+import time
 
 
 def guessCard(card, sideKey, ansKey):
@@ -57,6 +58,10 @@ def guessCards(flashCardDeck, sideKey, ansKey):
     if sideKey not in keys or ansKey not in keys:
         print("ERROR: Invalid side-type.")
         return
+    
+    startTimer = time.time()
+    pauseTimer = 0
+    
     for card in deck.cards:
         totalPoints += 1
         result = guessCard(card, sideKey, ansKey)
@@ -64,9 +69,13 @@ def guessCards(flashCardDeck, sideKey, ansKey):
             totalPoints -= 1
             if totalPoints != 0:
                 score = f"Score: {points}/{totalPoints} or {points/totalPoints*100:.2f}%\n"
+                thyme = f"Total Time: {time.time() - startTimer - pauseTimer:.2f} seconds\n"
+                timePerCard = f"Time per card: {(time.time() - startTimer - pauseTimer) / totalPoints:.2f} seconds\n"
             else:
                 score = "Score: 0/0 or 0.00%\n"
             print(score)
+            print(thyme)
+            print(timePerCard)
             input("Press Enter to return to menu\n")
             return
         if not result:
@@ -75,7 +84,11 @@ def guessCards(flashCardDeck, sideKey, ansKey):
             points += 1
     print("All cards reviewed.\n")
     score = f"Score: {points}/{totalPoints} or {points/totalPoints*100:.2f}%\n"
+    thyme = f"Total Time: {time.time() - startTimer - pauseTimer:.2f} seconds\n"
+    timePerCard = f"Time per card: {(time.time() - startTimer - pauseTimer) / totalPoints:.2f} seconds\n"
     print(score)
+    print(thyme)
+    print(timePerCard)
     if len(missedCards) == 0:
         input("Press Enter to return to menu\n")
         return
@@ -93,8 +106,10 @@ def customGuessCards(flashCardDeck, allTags, sideKey, ansKey):
         counter += 1
         if counter % 3 == 0:
             print()
-    userIn = input()
-    userTags = [tag.strip() for tag in userIn.split(",")]
+    userIn = input("\n")
+    userTags = [tag.strip() for tag in userIn.split(" ")]
+    print(f"Tags selected: {userTags}")
+    input("Press Enter to continue")
     totalPoints = 0
     points = 0
     deck = flashCardDeck
@@ -103,14 +118,13 @@ def customGuessCards(flashCardDeck, allTags, sideKey, ansKey):
     for card in deck.cards:
         tags = card.sides['tags'][1:-1].split(" ")
         for tag in tags:
-            if tag in userTags:
+            if tag in userTags and card not in customDeck:
                 customDeck.append(card)
-    if customDeck == []:
+    if customDeck is None or len(customDeck) == 0:
         print("No cards found in that category.")
         input("Press Enter to return to menu\n")
         return
     missedCards = []
-    input("Press Enter to continue")
     for card in customDeck:
         totalPoints += 1
         result = guessCard(card, sideKey, ansKey)

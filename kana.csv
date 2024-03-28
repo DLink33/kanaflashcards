@@ -1,105 +1,105 @@
-Romaji,Hiragana,Katakana,Type
-a,あ,ア,base
-i,い,イ,base
-u,う,ウ,base
-e,え,エ,base
-o,お,オ,base
-ka,か,カ,base
-ki,き,キ,base
-ku,く,ク,base
-ke,け,ケ,base
-ko,こ,コ,base
-sa,さ,サ,base
-shi,し,シ,base
-su,す,ス,base
-se,せ,セ,base
-so,そ,ソ,base
-ta,た,タ,base
-chi,ち,チ,base
-tsu,つ,ツ,base
-te,て,テ,base
-to,と,ト,base
-na,な,ナ,base
-ni,に,ニ,base
-nu,ぬ,ヌ,base
-ne,ね,ネ,base
-no,の,ノ,base
-ha,は,ハ,base
-hi,ひ,ヒ,base
-fu,ふ,フ,base
-he,へ,ヘ,base
-ho,ほ,ホ,base
-ma,ま,マ,base
-mi,み,ミ,base
-mu,む,ム,base
-me,め,メ,base
-mo,も,モ,base
-ya,や,ヤ,base
-yu,ゆ,ユ,base
-yo,よ,ヨ,base
-ra,ら,ラ,base
-ri,り,リ,base
-ru,る,ル,base
-re,れ,レ,base
-ro,ろ,ロ,base
-wa,わ,ワ,base
-wo,を,ヲ,base
-n,ん,ン,base
-ba,ば,バ,dakuten
-bi,び,ビ,dakuten
-bu,ぶ,ブ,dakuten
-be,べ,ベ,dakuten
-bo,ぼ,ボ,dakuten
-pa,ぱ,パ,dakuten
-pi,ぴ,ピ,dakuten
-pu,ぷ,プ,dakuten
-pe,ぺ,ペ,dakuten
-po,ぽ,ポ,dakuten
-da,だ,ダ,dakuten
-ji,ぢ,ヂ,dakuten
-zu,づ,ヅ,dakuten
-de,で,デ,dakuten
-do,ど,ド,dakuten
-ga,が,ガ,dakuten
-gi,ぎ,ギ,dakuten
-gu,ぐ,グ,dakuten
-ge,げ,ゲ,dakuten
-go,ご,ゴ,dakuten
-za,ざ,ザ,dakuten
-ji,じ,ジ,dakuten
-zu,ず,ズ,dakuten
-ze,ぜ,ゼ,dakuten
-zo,ぞ,ゾ,dakuten
-sha,しゃ,シャ,yoon
-shu,しゅ,シュ,yoon
-sho,しょ,ショ,yoon
-cha,ちゃ,チャ,yoon
-chu,ちゅ,チュ,yoon
-cho,ちょ,チョ,yoon
-nya,にゃ,ニャ,yoon
-nyu,にゅ,ニュ,yoon
-nyo,にょ,ニョ,yoon
-hya,ひゃ,ヒャ,yoon
-hyu,ひゅ,ヒュ,yoon
-hyo,ひょ,ヒョ,yoon
-mya,みゃ,ミャ,yoon
-myu,みゅ,ミュ,yoon
-myo,みょ,ミョ,yoon
-rya,りゃ,リャ,yoon
-ryu,りゅ,リュ,yoon
-ryo,りょ,リョ,yoon
-gya,ぎゃ,ギャ,yoon
-gyu,ぎゅ,ギュ,yoon
-gyo,ぎょ,ギョ,yoon
-bya,びゃ,ビャ,yoon
-byu,びゅ,ビュ,yoon
-byo,びょ,ビョ,yoon
-pya,ぴゃ,ピャ,yoon
-pyu,ぴゅ,ピュ,yoon
-pyo,ぴょ,ピョ,yoon
-kya,きゃ,キャ,yoon
-kyu,きゅ,キュ,yoon
-kyo,きょ,キョ,yoon
-ja,じゃ,ジャ,yoon
-ju,じゅ,ジュ,yoon
-jo,じょ,ジョ,yoon
+Romaji,Hiragana,Katakana,Tags
+a,あ,ア,[base]
+i,い,イ,[base]
+u,う,ウ,[base]
+e,え,エ,[base]
+o,お,オ,[base]
+ka,か,カ,[base k]
+ki,き,キ,[base k]
+ku,く,ク,[base k]
+ke,け,ケ,[base k]
+ko,こ,コ,[base k]
+sa,さ,サ,[base s]
+shi,し,シ,[base s sh]
+su,す,ス,[base s]
+se,せ,セ,[base s]
+so,そ,ソ,[base s]
+ta,た,タ,[base t]
+chi,ち,チ,[base t ch]
+tsu,つ,ツ,[base t]
+te,て,テ,[base t]
+to,と,ト,[base t]
+na,な,ナ,[base n]
+ni,に,ニ,[base n]
+nu,ぬ,ヌ,[base n]
+ne,ね,ネ,[base n]
+no,の,ノ,[base n]
+ha,は,ハ,[base h]
+hi,ひ,ヒ,[base h]
+fu,ふ,フ,[base h f]
+he,へ,ヘ,[base h]
+ho,ほ,ホ,[base h]
+ma,ま,マ,[base m]
+mi,み,ミ,[base m]
+mu,む,ム,[base m]
+me,め,メ,[base m]
+mo,も,モ,[base m]
+ya,や,ヤ,[base y]
+yu,ゆ,ユ,[base y]
+yo,よ,ヨ,[base y]
+ra,ら,ラ,[base r]
+ri,り,リ,[base r]
+ru,る,ル,[base r]
+re,れ,レ,[base r]
+ro,ろ,ロ,[base r]
+wa,わ,ワ,[base w]
+wo,を,ヲ,[base w]
+n,ん,ン,[base n]
+ga,が,ガ,[dakuten k g]
+gi,ぎ,ギ,[dakuten k g]
+gu,ぐ,グ,[dakuten k g]
+ge,げ,ゲ,[dakuten k g]
+go,ご,ゴ,[dakuten k g]
+za,ざ,ザ,[dakuten s z]
+ji,じ,ジ,[dakuten s z j]
+zu,ず,ズ,[dakuten s z]
+ze,ぜ,ゼ,[dakuten s z]
+zo,ぞ,ゾ,[dakuten s z]
+da,だ,ダ,[dakuten t d]
+ji,ぢ,ヂ,[dakuten t d j]
+zu,づ,ヅ,[dakuten t d z]
+de,で,デ,[dakuten t d]
+do,ど,ド,[dakuten t d]
+ba,ば,バ,[dakuten h b]
+bi,び,ビ,[dakuten h b]
+bu,ぶ,ブ,[dakuten h b]
+be,べ,ベ,[dakuten h b]
+bo,ぼ,ボ,[dakuten h b]
+pa,ぱ,パ,[handakuten h p]
+pi,ぴ,ピ,[handakuten h p]
+pu,ぷ,プ,[handakuten h p]
+pe,ぺ,ペ,[handakuten h p]
+po,ぽ,ポ,[handakuten h p]
+kya,きゃ,キャ,[yoon k]
+kyu,きゅ,キュ,[yoon k]
+kyo,きょ,キョ,[yoon k]
+gya,ぎゃ,ギャ,[yoon k g]
+gyu,ぎゅ,ギュ,[yoon k g]
+gyo,ぎょ,ギョ,[yoon k g]
+sha,しゃ,シャ,[yoon s sh]
+shu,しゅ,シュ,[yoon s sh]
+sho,しょ,ショ,[yoon s sh]
+ja,じゃ,ジャ,[yoon s j]
+ju,じゅ,ジュ,[yoon s j]
+jo,じょ,ジョ,[yoon s j]
+cha,ちゃ,チャ,[yoon t ch]
+chu,ちゅ,チュ,[yoon t ch]
+cho,ちょ,チョ,[yoon t ch]
+nya,にゃ,ニャ,[yoon n]
+nyu,にゅ,ニュ,[yoon n]
+nyo,にょ,ニョ,[yoon n]
+hya,ひゃ,ヒャ,[yoon h]
+hyu,ひゅ,ヒュ,[yoon h]
+hyo,ひょ,ヒョ,[yoon h]
+bya,びゃ,ビャ,[yoon h b]
+byu,びゅ,ビュ,[yoon h b]
+byo,びょ,ビョ,[yoon h b]
+pya,ぴゃ,ピャ,[yoon h p]
+pyu,ぴゅ,ピュ,[yoon h p]
+pyo,ぴょ,ピョ,[yoon h p]
+mya,みゃ,ミャ,[yoon m]
+myu,みゅ,ミュ,[yoon m]
+myo,みょ,ミョ,[yoon m]
+rya,りゃ,リャ,[yoon r]
+ryu,りゅ,リュ,[yoon r]
+ryo,りょ,リョ,[yoon r]
