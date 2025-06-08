@@ -1,5 +1,8 @@
-import msvcrt
 import os
+try:
+    import msvcrt  # Windows-only module
+except ModuleNotFoundError:  # Fallback for non-Windows platforms
+    msvcrt = None
 
 
 def guessCard(card, sideKey, ansKey):
@@ -151,8 +154,10 @@ def printCards(flashCardDeck):
     cards = flashCardDeck.cards
     for card in cards:
         card.printCard(list(card.sides.keys())[0])
-    userIn = None
-    print("Press Enter to return to menu")
-    while msvcrt.getch() != b'\r':
-        pass
+    if msvcrt is not None:
+        print("Press Enter to return to menu")
+        while msvcrt.getch() != b'\r':
+            pass
+    else:
+        input("Press Enter to return to menu\n")
     return
