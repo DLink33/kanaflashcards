@@ -62,13 +62,13 @@ def main():
     kanaTags.sort()
 
     vocabMenuFunctions = {
-        "All": {"function": guessCards, "args": [vocabCardDeck, "japanese", "english"]},
-        "By Category": {"function": customGuessCards, "args": [vocabCardDeck, vocabTags, "japanese", "english"]},
+        "All": {"function": guessCards, "args": [vocabCardDeck, "kana", "english"]},
+        "By Category": {"function": customGuessCards, "args": [vocabCardDeck, vocabTags, "kana", "english"]},
     }
 
     vocabFunctions = {
         "Vocabulary": {"function": menu, "args": ["Japanese (日本語) Vocabulary", "", vocabMenuFunctions]},
-        "Pronunciation": {"function": guessCards, "args": [vocabCardDeck, "japanese", "pronunciation"]}
+        "Pronunciation": {"function": guessCards, "args": [vocabCardDeck, "kana", "romaji"]}
     }
 
     mainMenuFunctions = {
