@@ -2,10 +2,11 @@ import random
 import tkinter as tk
 from tkinter import ttk
 
+from db import MySQLFlashcardRepository
 from flashCards import FlashCardDeck
 
-KANA_CSV = "kana.csv"
-JAP_VOCAB_CSV = "jap-vocab.csv"
+KANA_DECK = "kana"
+JAP_VOCAB_DECK = "jap-vocab"
 
 
 class FlashcardsGUI:
@@ -14,9 +15,10 @@ class FlashcardsGUI:
         self.root.title("Kana Flashcards")
         self.root.geometry("900x420")
 
+        repository = MySQLFlashcardRepository()
         self.decks = {
-            "Kana": FlashCardDeck(KANA_CSV),
-            "Vocabulary": FlashCardDeck(JAP_VOCAB_CSV),
+            "Kana": FlashCardDeck(deck_name=KANA_DECK, repository=repository),
+            "Vocabulary": FlashCardDeck(deck_name=JAP_VOCAB_DECK, repository=repository),
         }
 
         self.deck_var = tk.StringVar(value="Kana")
