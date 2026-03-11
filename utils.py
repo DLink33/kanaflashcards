@@ -1,9 +1,7 @@
 from unicodedata import east_asian_width as eaw
-from consolemenu import ConsoleMenu
-from consolemenu.items import FunctionItem
-
-
 def createMenu(title, subtitle, functions):
+    from consolemenu import ConsoleMenu
+    from consolemenu.items import FunctionItem
 
     # Create the menu
     menu = ConsoleMenu(str(title), str(subtitle))

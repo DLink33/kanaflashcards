@@ -1,10 +1,10 @@
 #!/mingw64/bin/python3
 
-from flashCards import FlashCardDeck
-from utils import createMenu as menu
-from utils import getUserInput
-from games import guessCards, customGuessCards
+import argparse
 import os
+
+from flashCards import FlashCardDeck
+from gui import run_gui
 
 KANA_CSV = "kana.csv"
 KANA_TEST_CSV = "kana-test.csv"
@@ -12,6 +12,10 @@ JAP_VOCAB_CSV = "jap-vocab.csv"
 
 
 def kanaPracticeMenu(kanaCardDeck, kanas):
+    from utils import createMenu as menu
+    from utils import getUserInput
+    from games import guessCards, customGuessCards
+
     shownKana = getUserInput(
         "Enter what kana type you want shown:\n  - Romaji\n  - Hiragana\n  - Katakana\n", ['r', 'h', 'k'])[0].lower()
     os.system('cls')
@@ -24,11 +28,14 @@ def kanaPracticeMenu(kanaCardDeck, kanas):
         "Custom": {"function": customGuessCards, "args": [kanaCardDeck, kanas, key[shownKana], key[guessKana]]},
     }
 
-    menu(f"{key[shownKana].capitalize()} ⟶   {key[guessKana].capitalize()}",
-         "", kanaMenuFunctions)
+    menu(f"{key[shownKana].capitalize()} ⟶   {key[guessKana].capitalize()}", "", kanaMenuFunctions)
 
 
 def vocabPracticeMenu(vocabCardDeck, vocabTags):
+    from utils import createMenu as menu
+    from utils import getUserInput
+    from games import guessCards, customGuessCards
+
     shownSide = getUserInput(
         "Enter what you want shown:\n  - English\n  - Romaji\n  - Kana (no Kanji)\n  - Kana (with Kanji)\n", ['english', 'romaji', 'kana', 'kanji']).lower()
     os.system('cls')
@@ -40,12 +47,13 @@ def vocabPracticeMenu(vocabCardDeck, vocabTags):
         "Custom": {"function": customGuessCards, "args": [vocabCardDeck, vocabTags, shownSide, guessSide]},
     }
 
-    menu(f"{shownSide.capitalize()} ⟶   {guessSide.capitalize()}",
-         "", vocabMenuFunctions)
+    menu(f"{shownSide.capitalize()} ⟶   {guessSide.capitalize()}", "", vocabMenuFunctions)
 
 
 def main():
-    # kanaCardDeck = FlashCardDeck(KANA_CSV)
+    from utils import createMenu as menu
+    from games import guessCards, customGuessCards
+
     kanaCardDeck = FlashCardDeck(KANA_CSV)
     vocabCardDeck = FlashCardDeck(JAP_VOCAB_CSV)
     vocabTags = []
@@ -81,4 +89,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Japanese flashcards")
+    parser.add_argument("--gui", action="store_true", help="Launch the desktop GUI")
+    args = parser.parse_args()
+
+    if args.gui:
+        run_gui()
+    else:
+        main()
