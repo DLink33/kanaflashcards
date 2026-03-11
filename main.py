@@ -11,59 +11,86 @@ KANA_TEST_CSV = "kana-test.csv"
 JAP_VOCAB_CSV = "jap-vocab.csv"
 
 
+def clearTerm():
+    os.system("cls" if os.name == "nt" else "clear")
+
+
 def kanaPracticeMenu(kanaCardDeck, kanas):
+    from games import customGuessCards, guessCards
     from utils import createMenu as menu
     from utils import getUserInput
-    from games import guessCards, customGuessCards
 
     shownKana = getUserInput(
-        "Enter what kana type you want shown:\n  - Romaji\n  - Hiragana\n  - Katakana\n", ['r', 'h', 'k'])[0].lower()
-    os.system('cls')
+        "Enter what kana type you want shown:\n  - Romaji\n  - Hiragana\n  - Katakana\n",
+        ["r", "h", "k"],
+    )[0].lower()
+    clearTerm()
     guessKana = getUserInput(
-        "Enter what kana type you want to guess:\n  - Romaji\n  - Hiragana\n  - Katakana\n", ['r', 'h', 'k'])[0].lower()
+        "Enter what kana type you want to guess:\n  - Romaji\n  - Hiragana\n  - Katakana\n",
+        ["r", "h", "k"],
+    )[0].lower()
     key = {"k": "katakana", "r": "romaji", "h": "hiragana"}
 
     kanaMenuFunctions = {
-        "All": {"function": guessCards, "args": [kanaCardDeck, key[shownKana], key[guessKana]]},
-        "Custom": {"function": customGuessCards, "args": [kanaCardDeck, kanas, key[shownKana], key[guessKana]]},
+        "All": {
+            "function": guessCards,
+            "args": [kanaCardDeck, key[shownKana], key[guessKana]],
+        },
+        "Custom": {
+            "function": customGuessCards,
+            "args": [kanaCardDeck, kanas, key[shownKana], key[guessKana]],
+        },
     }
 
-    menu(f"{key[shownKana].capitalize()} ⟶   {key[guessKana].capitalize()}", "", kanaMenuFunctions)
+    menu(
+        f"{key[shownKana].capitalize()} ⟶   {key[guessKana].capitalize()}",
+        "",
+        kanaMenuFunctions,
+    )
 
 
 def vocabPracticeMenu(vocabCardDeck, vocabTags):
+    from games import customGuessCards, guessCards
     from utils import createMenu as menu
     from utils import getUserInput
-    from games import guessCards, customGuessCards
 
     shownSide = getUserInput(
-        "Enter what you want shown:\n  - English\n  - Romaji\n  - Kana (no Kanji)\n  - Kana (with Kanji)\n", ['english', 'romaji', 'kana', 'kanji']).lower()
-    os.system('cls')
+        "Enter what you want shown:\n  - English\n  - Romaji\n  - Kana (no Kanji)\n  - Kana (with Kanji)\n",
+        ["english", "romaji", "kana", "kanji"],
+    ).lower()
+    clearTerm()
     guessSide = getUserInput(
-        "Enter what kana type you want to guess:\n  - English\n  - Romaji\n  - Kana (no Kanji)\n  - Kana (with Kanji)\n", ['english', 'romaji', 'kana', 'kanji']).lower()
+        "Enter what kana type you want to guess:\n  - English\n  - Romaji\n  - Kana (no Kanji)\n  - Kana (with Kanji)\n",
+        ["english", "romaji", "kana", "kanji"],
+    ).lower()
 
     vocabMenuFunctions = {
         "All": {"function": guessCards, "args": [vocabCardDeck, shownSide, guessSide]},
-        "Custom": {"function": customGuessCards, "args": [vocabCardDeck, vocabTags, shownSide, guessSide]},
+        "Custom": {
+            "function": customGuessCards,
+            "args": [vocabCardDeck, vocabTags, shownSide, guessSide],
+        },
     }
 
-    menu(f"{shownSide.capitalize()} ⟶   {guessSide.capitalize()}", "", vocabMenuFunctions)
+    menu(
+        f"{shownSide.capitalize()} ⟶   {guessSide.capitalize()}", "", vocabMenuFunctions
+    )
 
 
 def main():
+    from games import customGuessCards, guessCards
     from utils import createMenu as menu
-    from games import guessCards, customGuessCards
 
     kanaCardDeck = FlashCardDeck(KANA_CSV)
     vocabCardDeck = FlashCardDeck(JAP_VOCAB_CSV)
     vocabTags = []
     kanaTags = []
     for card in vocabCardDeck.cards:
-        for tag in card.sides['tags'][1:-1].split(" "):
+        for tag in card.sides["tags"][1:-1].split(" "):
             if tag not in vocabTags:
                 vocabTags.append(tag)
     for card in kanaCardDeck.cards:
-        for tag in card.sides['tags'][1:-1].split(" "):
+        for tag in card.sides["tags"][1:-1].split(" "):
             if tag not in kanaTags:
                 kanaTags.append(tag)
     vocabTags.sort()
@@ -71,18 +98,33 @@ def main():
 
     vocabMenuFunctions = {
         "All": {"function": guessCards, "args": [vocabCardDeck, "kana", "english"]},
-        "By Category": {"function": customGuessCards, "args": [vocabCardDeck, vocabTags, "kana", "english"]},
+        "By Category": {
+            "function": customGuessCards,
+            "args": [vocabCardDeck, vocabTags, "kana", "english"],
+        },
     }
 
     vocabFunctions = {
-        "Vocabulary": {"function": menu, "args": ["Japanese (日本語) Vocabulary", "", vocabMenuFunctions]},
-        "Pronunciation": {"function": guessCards, "args": [vocabCardDeck, "kana", "romaji"]}
+        "Vocabulary": {
+            "function": menu,
+            "args": ["Japanese (日本語) Vocabulary", "", vocabMenuFunctions],
+        },
+        "Pronunciation": {
+            "function": guessCards,
+            "args": [vocabCardDeck, "kana", "romaji"],
+        },
     }
 
     mainMenuFunctions = {
         "Kana": {"function": kanaPracticeMenu, "args": [kanaCardDeck, kanaTags]},
-        "Vocabulary (Beta)": {"function": vocabPracticeMenu, "args": [vocabCardDeck, vocabTags]},
-        "Vocabulary": {"function": menu, "args": ["Vocabulary Flashcards", "Japanese Words", vocabFunctions]}
+        "Vocabulary (Beta)": {
+            "function": vocabPracticeMenu,
+            "args": [vocabCardDeck, vocabTags],
+        },
+        "Vocabulary": {
+            "function": menu,
+            "args": ["Vocabulary Flashcards", "Japanese Words", vocabFunctions],
+        },
     }
 
     menu("English ⇆ Japanese", "FlashCards for learning Japanese...", mainMenuFunctions)
