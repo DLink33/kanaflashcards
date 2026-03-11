@@ -42,6 +42,7 @@ Use the provided setup script to optionally install MySQL (via `dnf`), ensure `m
 
 ```bash
 python scripts/setup_mysql_db.py --ensure-mysql --root-user root --root-password '<root_password>'
+python -m scripts.setup_mysql_db
 ```
 
 If MySQL is already installed/running, omit `--ensure-mysql`.
