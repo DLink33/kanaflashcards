@@ -3,12 +3,12 @@
 import argparse
 import os
 
+from db import MySQLFlashcardRepository
 from flashCards import FlashCardDeck
 from gui import run_gui
 
-KANA_CSV = "kana.csv"
-KANA_TEST_CSV = "kana-test.csv"
-JAP_VOCAB_CSV = "jap-vocab.csv"
+KANA_DECK = "kana"
+JAP_VOCAB_DECK = "jap-vocab"
 
 
 def clearTerm():
@@ -81,8 +81,9 @@ def main():
     from games import customGuessCards, guessCards
     from utils import createMenu as menu
 
-    kanaCardDeck = FlashCardDeck(KANA_CSV)
-    vocabCardDeck = FlashCardDeck(JAP_VOCAB_CSV)
+    repository = MySQLFlashcardRepository()
+    kanaCardDeck = FlashCardDeck(deck_name=KANA_DECK, repository=repository)
+    vocabCardDeck = FlashCardDeck(deck_name=JAP_VOCAB_DECK, repository=repository)
     vocabTags = []
     kanaTags = []
     for card in vocabCardDeck.cards:
